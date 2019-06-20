@@ -1,0 +1,22 @@
+{
+  "name": "Heroku EMP Connector",
+  "description": "Simple Java application to connect to an EMP stream from Salesforce",
+  "keywords": [
+    "java"
+  ],
+  "env": {
+    "SF_USER": {
+      "description": "The salesforce user you are going to login with.",
+      "value": "set@this.user"
+    },
+    "SF_PASS": {
+      "description": "Password (and security token concatenated if required).",
+      "value": "pass+securityToken"
+    }, 
+    "SF_TOPIC" : {
+    	"description":"This is the name of the topic you wish this worker to subscribe to",
+    	"value":"/data/AccountChangeEvent"
+    }
+  },
+  "website": "https://www.heroku.com"
+}
