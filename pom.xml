@@ -93,7 +93,7 @@
 			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+	<dependency>
       <groupId>io.dropwizard</groupId>
       <artifactId>dropwizard-core</artifactId>
       <version>${dropwizard.version}</version>
