@@ -1,0 +1,17 @@
+server:
+  type: simple
+  applicationContextPath: /
+  rootPath: /api/*
+  connector:
+    type: http
+    port: ${PORT}
+
+logging:
+  level: INFO
+
+  loggers:
+    com.heroku.kafka.demo: DEBUG
+
+kafka:
+  topic: ${KAFKA_PREFIX}messages
+  consumerGroup: ${KAFKA_PREFIX}demo-group

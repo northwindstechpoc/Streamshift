@@ -8,3 +8,6 @@
 **/.settings
 **/.classpath
 **/.DS_Store
+.*.jks
+*.iml
+.idea/
