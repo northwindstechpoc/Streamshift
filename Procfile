@@ -1,1 +1,1 @@
-emp-connector: java -jar target/emp-connector-0.0.1-SNAPSHOT-phat.jar 
+emp-connector: java -jar target/emp-connector-0.0.1-SNAPSHOT-phat.jar
