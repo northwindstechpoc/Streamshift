@@ -10,7 +10,7 @@
 	<url>https://github.com/forcedotcom/EMP-Connector</url>
 
 	<properties>
-		<module.main.class>com.salesforce.emp.connector.EmpConnector</module.main.class>
+		<module.main.class>com.salesforce.emp.connector.example.LoginExample</module.main.class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
