@@ -1,4 +1,4 @@
-package com.heroku.kafka.demo;
+package com.salesforce.emp.connector;
 
 import com.github.jkutner.EnvKeyStore;
 import com.google.common.base.Joiner;

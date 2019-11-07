@@ -1,4 +1,4 @@
-package com.heroku.kafka.demo;
+package com.salesforce.emp.connector;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.collect.Lists;

@@ -1,4 +1,4 @@
-package com.heroku.kafka.demo;
+package com.salesforce.emp.connector;
 
 import io.dropwizard.lifecycle.Managed;
 import org.apache.kafka.clients.producer.*;

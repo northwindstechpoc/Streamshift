@@ -1,4 +1,4 @@
-package com.heroku.kafka.demo;
+package com.salesforce.emp.connector;
 
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;

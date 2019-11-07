@@ -111,11 +111,11 @@
       <version>${dropwizard.version}</version>
     </dependency>
 
-    <!--<dependency>
+    <dependency>
       <groupId>com.loginbox.heroku</groupId>
       <artifactId>dropwizard-heroku-config</artifactId>
       <version>1.0.0</version>
-    </dependency>-->
+    </dependency>
 
     <dependency>
       <groupId>org.glassfish.jersey.ext</groupId>
