@@ -42,13 +42,11 @@ import com.loginbox.heroku.config.HerokuConfiguration;
 public class LoginExample {
 	
     private static Logger LOG = LoggerFactory.getLogger(LoginExample.class);
-    public static Environment env;
     
     public static void main(String[] argv) throws Exception {
         KafkaConfig kafkaConfig = new KafkaConfig();
         DemoProducer producer = new DemoProducer(kafkaConfig);
         
-        env.lifecycle().manage(producer);
         producer.start();
 
         if (null == System.getenv("SF_USER") || null == System.getenv("SF_PASS") || null == System.getenv("SF_TOPIC")) {
