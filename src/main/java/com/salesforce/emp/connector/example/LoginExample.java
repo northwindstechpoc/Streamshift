@@ -6,9 +6,8 @@
  */
 package com.salesforce.emp.connector.example;
 
+import com.salesforce.emp.connector.*;
 import static com.salesforce.emp.connector.LoginHelper.login;
-import static com.salesforce.emp.connector.DemoConfiguration;
-import static com.salesforce.emp.connector.DemoProducer;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
