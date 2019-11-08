@@ -98,6 +98,6 @@ public interface BayeuxParameters {
      * @return the Streaming API version
      */
     default String version() {
-        return "43.0";
+        return "47.0";
     }
 }

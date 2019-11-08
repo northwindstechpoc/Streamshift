@@ -86,7 +86,7 @@ public class LoginHelper {
             + "xmlns:urn='urn:partner.soap.sforce.com'><soapenv:Body>";
 
     // The enterprise SOAP API endpoint used for the login call
-    private static final String SERVICES_SOAP_PARTNER_ENDPOINT = "/services/Soap/u/44.0/";
+    private static final String SERVICES_SOAP_PARTNER_ENDPOINT = "/services/Soap/u/47.0/";
 
     public static BayeuxParameters login(String username, String password) throws Exception {
         return login(new URL(LOGIN_ENDPOINT), username, password);
