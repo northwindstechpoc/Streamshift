@@ -43,7 +43,7 @@ public class LoginExample {
 	
     private static Logger LOG = LoggerFactory.getLogger(LoginExample.class);
     private static Environment env;
-    private final KafkaConfig kafkaConfig = new KafkaConfig();
+    private static KafkaConfig kafkaConfig = new KafkaConfig();
     private static DemoProducer producer = new DemoProducer(kafkaConfig.getKafkaConfig());
     
     public static void main(String[] argv) throws Exception {
