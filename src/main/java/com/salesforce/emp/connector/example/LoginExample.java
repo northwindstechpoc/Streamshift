@@ -12,6 +12,14 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
+import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
+import org.glassfish.jersey.linking.DeclarativeLinkingFeature;
+
 import org.eclipse.jetty.util.ajax.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +39,18 @@ import com.salesforce.emp.connector.TopicSubscription;
  */
 public class LoginExample {
 	
-	private static Logger LOG = LoggerFactory.getLogger(LoginExample.class);
+    private static Logger LOG = LoggerFactory.getLogger(LoginExample.class);
+    private Environment env;
+    private DemoConfiguration config;
+    private DemoProducer producer = new DemoProducer(config.getKafkaConfig());
+    
     public static void main(String[] argv) throws Exception {
-    	
+        
+        env.lifecycle().manage(producer);
+        env.jersey().register(DeclarativeLinkingFeature.class);
+        env.jersey().register(new DemoResource(producer, consumer));
+        producer.start();
+
         if (null == System.getenv("SF_USER") || null == System.getenv("SF_PASS") || null == System.getenv("SF_TOPIC")) {
             LOG.error("Usage: Set SF_USER, SF_PASS and SF_TOPIC as environment variables to run");
             System.exit(1);
@@ -57,7 +74,8 @@ public class LoginExample {
 
         BayeuxParameters params = tokenProvider.login();
 
-        Consumer<Map<String, Object>> consumer = event -> LOG.info(String.format("Received:\n%s", JSON.toString(event)));
+        //Consumer<Map<String, Object>> consumer = event -> LOG.info(String.format("Received:\n%s", JSON.toString(event)));
+        Consumer<Map<String, Object>> consumer = event -> producer.send(event);
 
         EmpConnector connector = new EmpConnector(params);
 
