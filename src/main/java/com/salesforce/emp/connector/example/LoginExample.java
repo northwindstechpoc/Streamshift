@@ -40,9 +40,9 @@ import com.salesforce.emp.connector.TopicSubscription;
 public class LoginExample {
 	
     private static Logger LOG = LoggerFactory.getLogger(LoginExample.class);
-    private Environment env;
-    private DemoConfiguration config;
-    private DemoProducer producer = new DemoProducer(config.getKafkaConfig());
+    private static Environment env;
+    private static DemoConfiguration config;
+    private static DemoProducer producer = new DemoProducer(config.getKafkaConfig());
     
     public static void main(String[] argv) throws Exception {
         
