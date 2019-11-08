@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import com.salesforce.emp.connector.BayeuxParameters;
 import com.salesforce.emp.connector.EmpConnector;
 import com.salesforce.emp.connector.TopicSubscription;
+import com.loginbox.heroku.config.HerokuConfiguration;
 
 /**
  * An example of using the EMP connector using login credentials
@@ -42,8 +43,8 @@ public class LoginExample {
 	
     private static Logger LOG = LoggerFactory.getLogger(LoginExample.class);
     private static Environment env;
-    private static DemoConfiguration config;
-    private static DemoProducer producer = new DemoProducer(config.getKafkaConfig());
+    private final KafkaConfig kafkaConfig = new KafkaConfig();
+    private static DemoProducer producer = new DemoProducer(kafkaConfig.getKafkaConfig());
     
     public static void main(String[] argv) throws Exception {
         
