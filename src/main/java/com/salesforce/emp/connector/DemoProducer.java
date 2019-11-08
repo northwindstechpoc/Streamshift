@@ -17,7 +17,8 @@ public class DemoProducer implements Managed {
   private Producer<String, String> producer;
 
   public DemoProducer(KafkaConfig config) {
-    this.config = config;
+    //this.config = config;
+    this.config = System.getenv("SF_TOPIC");
   }
 
   public void start() throws Exception {
