@@ -42,9 +42,9 @@ import com.loginbox.heroku.config.HerokuConfiguration;
 public class LoginExample {
 	
     private static Logger LOG = LoggerFactory.getLogger(LoginExample.class);
+    public static Environment env;
     
     public static void main(String[] argv) throws Exception {
-        Environment env;
         KafkaConfig kafkaConfig = new KafkaConfig();
         DemoProducer producer = new DemoProducer(kafkaConfig);
         
