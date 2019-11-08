@@ -57,7 +57,7 @@ public class LoginExample {
 
         BayeuxParameters params = tokenProvider.login();
 
-        Consumer<Map<String, Object>> consumer = event -> System.out.println(String.format("Received:\n%s", JSON.toString(event)));
+        Consumer<Map<String, Object>> consumer = event -> LOG.info(String.format("Received:\n%s", JSON.toString(event)));
 
         EmpConnector connector = new EmpConnector(params);
 
