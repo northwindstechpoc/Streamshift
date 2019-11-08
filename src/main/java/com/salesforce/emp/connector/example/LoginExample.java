@@ -48,8 +48,6 @@ public class LoginExample {
     public static void main(String[] argv) throws Exception {
         
         env.lifecycle().manage(producer);
-        env.jersey().register(DeclarativeLinkingFeature.class);
-        env.jersey().register(new DemoResource(producer, consumer));
         producer.start();
 
         if (null == System.getenv("SF_USER") || null == System.getenv("SF_PASS") || null == System.getenv("SF_TOPIC")) {
