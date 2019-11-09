@@ -21,7 +21,7 @@ import static java.lang.System.getenv;
 public class KafkaConfig {
 
   @NotEmpty
-  private String topic = System.getenv("SF_TOPIC");
+  private String topic = "tennessee-23330.messages";
 
   @NotEmpty
   private String consumerGroup;
