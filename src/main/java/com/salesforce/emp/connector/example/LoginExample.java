@@ -75,7 +75,7 @@ public class LoginExample {
         //Consumer<Map<String, Object>> consumer = event -> LOG.info(String.format("Received:\n%s", JSON.toString(event)));
         Consumer<Map<String, Object>> consumer = event -> producer.send(JSON.toString(event));
 
-        /*EmpConnector connector = new EmpConnector(params);
+        EmpConnector connector = new EmpConnector(params);
 
         connector.setBearerTokenProvider(tokenProvider);
 
@@ -83,6 +83,6 @@ public class LoginExample {
 
         TopicSubscription subscription = connector.subscribe(System.getenv("SF_TOPIC"), replayFrom, consumer).get(5, TimeUnit.SECONDS);
 
-        LOG.info(String.format("Subscribed: %s", subscription));*/
+        LOG.info(String.format("Subscribed: %s", subscription));
     }
 }
