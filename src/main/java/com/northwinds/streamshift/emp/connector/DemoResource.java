@@ -17,11 +17,11 @@ import static java.lang.String.format;
 
 @Path("/")
 public class DemoResource {
-  private final KafkaProducer producer;
+  private final StreamshiftProducer producer;
 
   private final DemoConsumer consumer;
 
-  public DemoResource(KafkaProducer producer, DemoConsumer consumer) {
+  public DemoResource(StreamshiftProducer producer, DemoConsumer consumer) {
     this.producer = producer;
     this.consumer = consumer;
   }

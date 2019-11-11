@@ -9,14 +9,14 @@ import org.slf4j.LoggerFactory;
 import java.util.Properties;
 import java.util.concurrent.Future;
 
-public class KafkaProducer implements Managed {
-  private static final Logger LOG = LoggerFactory.getLogger(KafkaProducer.class);
+public class StreamshiftProducer implements Managed {
+  private static final Logger LOG = LoggerFactory.getLogger(StreamshiftProducer.class);
 
   private final KafkaConfig config;
   
   private Producer<String, String> producer;
 
-  public KafkaProducer(KafkaConfig config) {
+  public StreamshiftProducer(KafkaConfig config) {
     this.config = config;
   }
 

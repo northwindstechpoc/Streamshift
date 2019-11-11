@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 import com.northwinds.streamshift.BayeuxParameters;
 import com.northwinds.streamshift.EmpConnector;
 import com.northwinds.streamshift.SalesforceSubscription;
-import com.northwinds.streamshift.KafkaProducer;
+import com.northwinds.streamshift.StreamshiftProducer;
 import com.northwinds.streamshift.KafkaConfig;
 
 import com.loginbox.heroku.config.HerokuConfiguration;
@@ -32,7 +32,7 @@ public class Streamshift {
     
     public static void main(String[] argv) throws Exception {
         KafkaConfig kafkaConfig = new KafkaConfig();
-        KafkaProducer producer = new KafkaProducer(kafkaConfig);
+        StreamshiftProducer producer = new StreamshiftProducer(kafkaConfig);
         
         producer.start();
 

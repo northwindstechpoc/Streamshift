@@ -34,7 +34,7 @@ public class DemoApplication extends Application<DemoConfiguration>  {
 
   @Override
   public void run(DemoConfiguration config, Environment env) throws Exception {
-    KafkaProducer producer = new KafkaProducer(config.getKafkaConfig());
+    StreamshiftProducer producer = new StreamshiftProducer(config.getKafkaConfig());
     DemoConsumer consumer = new DemoConsumer(config.getKafkaConfig());
 
     env.lifecycle().manage(producer);
