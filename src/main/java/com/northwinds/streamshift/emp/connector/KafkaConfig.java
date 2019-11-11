@@ -1,4 +1,4 @@
-package com.northwinds.streamshift.emp.connector;
+package com.northwinds.streamshift;
 
 import com.github.jkutner.EnvKeyStore;
 import com.google.common.base.Joiner;

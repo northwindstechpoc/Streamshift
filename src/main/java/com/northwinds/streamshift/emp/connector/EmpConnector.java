@@ -1,4 +1,4 @@
-package com.northwinds.streamshift.emp.connector;
+package com.northwinds.streamshift;
 
 import java.net.ConnectException;
 import java.util.Arrays;
@@ -36,7 +36,7 @@ public class EmpConnector {
 
         /*
          * (non-Javadoc)
-         * @see com.northwoods.streamshift.emp.connector.Subscription#cancel()
+         * @see com.northwoods.streamshift.Subscription#cancel()
          */
         @Override
         public void cancel() {
@@ -49,7 +49,7 @@ public class EmpConnector {
 
         /*
          * (non-Javadoc)
-         * @see com.northwinds.streamshift.emp.connector.Subscription#getReplay()
+         * @see com.northwinds.streamshift.Subscription#getReplay()
          */
         @Override
         public long getReplayFrom() {
@@ -58,7 +58,7 @@ public class EmpConnector {
 
         /*
          * (non-Javadoc)
-         * @see com.northwinds.streamshift.emp.connector.Subscription#getTopic()
+         * @see com.northwinds.streamshift.Subscription#getTopic()
          */
         @Override
         public String getTopic() {

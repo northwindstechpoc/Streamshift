@@ -1,4 +1,4 @@
-package com.northwinds.streamshift.emp.connector;
+package com.northwinds.streamshift;
 
 import io.dropwizard.lifecycle.Managed;
 import org.apache.kafka.clients.producer.*;

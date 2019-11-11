@@ -1,6 +1,6 @@
 package com.northwinds.streamshift;
 
-import com.northwinds.streamshift.emp.connector.BayeuxParameters;
+import com.northwinds.streamshift.BayeuxParameters;
 
 import java.util.function.Function;
 import java.util.function.Supplier;

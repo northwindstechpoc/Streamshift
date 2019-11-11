@@ -1,4 +1,4 @@
-package com.northwinds.streamshift.emp.connector;
+package com.northwinds.streamshift;
 
 import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;

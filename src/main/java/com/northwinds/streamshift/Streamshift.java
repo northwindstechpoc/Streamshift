@@ -1,6 +1,6 @@
 package com.northwinds.streamshift;
 
-import static com.northwinds.streamshift.emp.connector.LoginHelper.login;
+import static com.northwinds.streamshift.LoginHelper.login;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -18,11 +18,11 @@ import org.eclipse.jetty.util.ajax.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.northwinds.streamshift.emp.connector.BayeuxParameters;
-import com.northwinds.streamshift.emp.connector.EmpConnector;
-import com.northwinds.streamshift.emp.connector.SalesforceSubscription;
-import com.northwinds.streamshift.emp.connector.KafkaProducer;
-import com.northwinds.streamshift.emp.connector.KafkaConfig;
+import com.northwinds.streamshift.BayeuxParameters;
+import com.northwinds.streamshift.EmpConnector;
+import com.northwinds.streamshift.SalesforceSubscription;
+import com.northwinds.streamshift.KafkaProducer;
+import com.northwinds.streamshift.KafkaConfig;
 
 import com.loginbox.heroku.config.HerokuConfiguration;
 
