@@ -1,4 +1,4 @@
-package com.northwinds.streamshift;
+package com.northwinds.streamshift.emp.connector;
 
 public interface SalesforceSubscription {
 

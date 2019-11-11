@@ -1,4 +1,4 @@
-package com.northwinds.streamshift.example;
+package com.northwinds.streamshift;
 
 import com.northwinds.streamshift.emp.connector.BayeuxParameters;
 

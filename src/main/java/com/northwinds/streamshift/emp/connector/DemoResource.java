@@ -1,4 +1,4 @@
-package com.northwinds.streamshift;
+package com.northwinds.streamshift.emp.connector;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.collect.Lists;

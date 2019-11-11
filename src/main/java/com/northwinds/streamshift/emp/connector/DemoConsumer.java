@@ -1,4 +1,4 @@
-package com.northwinds.streamshift;
+package com.northwinds.streamshift.emp.connector;
 
 import com.google.common.collect.Lists;
 import io.dropwizard.lifecycle.Managed;

@@ -1,4 +1,4 @@
-package com.northwinds.streamshift;
+package com.northwinds.streamshift.emp.connector;
 
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
