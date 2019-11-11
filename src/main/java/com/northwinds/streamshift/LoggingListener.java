@@ -1,4 +1,4 @@
-package com.salesforce.emp.connector.example;
+package com.northwinds.streamshift;
 
 import org.cometd.bayeux.Message;
 import org.cometd.bayeux.client.ClientSessionChannel;

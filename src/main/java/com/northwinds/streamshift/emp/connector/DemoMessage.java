@@ -1,4 +1,4 @@
-package com.salesforce.emp.connector;
+package com.northwinds.streamshift;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

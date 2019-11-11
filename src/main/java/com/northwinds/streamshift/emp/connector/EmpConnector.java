@@ -1,10 +1,4 @@
-/*
- * Copyright (c) 2016, salesforce.com, inc.
- * All rights reserved.
- * Licensed under the BSD 3-Clause license.
- * For full license text, see LICENSE.TXT file in the repo root  or https://opensource.org/licenses/BSD-3-Clause
- */
-package com.salesforce.emp.connector;
+package com.northwinds.streamshift;
 
 import java.net.ConnectException;
 import java.util.Arrays;
@@ -26,15 +20,11 @@ import org.eclipse.jetty.client.api.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author hal.hildebrand
- * @since API v37.0
- */
 public class EmpConnector {
     private static final String ERROR = "error";
     private static final String FAILURE = "failure";
 
-    private class SubscriptionImpl implements TopicSubscription {
+    private class SubscriptionImpl implements SalesforceSubscription {
         private final String topic;
         private final Consumer<Map<String, Object>> consumer;
 
@@ -46,7 +36,7 @@ public class EmpConnector {
 
         /*
          * (non-Javadoc)
-         * @see com.salesforce.emp.connector.Subscription#cancel()
+         * @see com.northwoods.streamshift.emp.connector.Subscription#cancel()
          */
         @Override
         public void cancel() {
@@ -59,7 +49,7 @@ public class EmpConnector {
 
         /*
          * (non-Javadoc)
-         * @see com.salesforce.emp.connector.Subscription#getReplay()
+         * @see com.northwinds.streamshift.emp.connector.Subscription#getReplay()
          */
         @Override
         public long getReplayFrom() {
@@ -68,7 +58,7 @@ public class EmpConnector {
 
         /*
          * (non-Javadoc)
-         * @see com.salesforce.emp.connector.Subscription#getTopic()
+         * @see com.northwinds.streamshift.emp.connector.Subscription#getTopic()
          */
         @Override
         public String getTopic() {
@@ -80,10 +70,10 @@ public class EmpConnector {
             return String.format("Subscription [%s:%s]", getTopic(), getReplayFrom());
         }
 
-        Future<TopicSubscription> subscribe() {
+        Future<SalesforceSubscription> subscribe() {
             Long replayFrom = getReplayFrom();
             ClientSessionChannel channel = client.getChannel(topic);
-            CompletableFuture<TopicSubscription> future = new CompletableFuture<>();
+            CompletableFuture<SalesforceSubscription> future = new CompletableFuture<>();
             channel.subscribe((c, message) -> consumer.accept(message.getDataAsMap()), (c, message) -> {
                 if (message.isSuccessful()) {
                     future.complete(this);
@@ -184,7 +174,7 @@ public class EmpConnector {
      * @return a Future returning the Subscription - on completion returns a Subscription or throws a CannotSubscribe
      *         exception
      */
-    public Future<TopicSubscription> subscribe(String topic, long replayFrom, Consumer<Map<String, Object>> consumer) {
+    public Future<SalesforceSubscription> subscribe(String topic, long replayFrom, Consumer<Map<String, Object>> consumer) {
         if (!running.get()) {
             throw new IllegalStateException(String.format("Connector[%s} has not been started",
                     parameters.endpoint()));
@@ -212,7 +202,7 @@ public class EmpConnector {
      * @return a Future returning the Subscription - on completion returns a Subscription or throws a CannotSubscribe
      *         exception
      */
-    public Future<TopicSubscription> subscribeEarliest(String topic, Consumer<Map<String, Object>> consumer) {
+    public Future<SalesforceSubscription> subscribeEarliest(String topic, Consumer<Map<String, Object>> consumer) {
         return subscribe(topic, REPLAY_FROM_EARLIEST, consumer);
     }
 
@@ -226,7 +216,7 @@ public class EmpConnector {
      * @return a Future returning the Subscription - on completion returns a Subscription or throws a CannotSubscribe
      *         exception
      */
-    public Future<TopicSubscription> subscribeTip(String topic, Consumer<Map<String, Object>> consumer) {
+    public Future<SalesforceSubscription> subscribeTip(String topic, Consumer<Map<String, Object>> consumer) {
         return subscribe(topic, REPLAY_FROM_TIP, consumer);
     }
 

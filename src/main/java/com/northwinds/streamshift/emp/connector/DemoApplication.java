@@ -1,4 +1,4 @@
-package com.salesforce.emp.connector;
+package com.northwinds.streamshift;
 
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
@@ -34,8 +34,8 @@ public class DemoApplication extends Application<DemoConfiguration>  {
 
   @Override
   public void run(DemoConfiguration config, Environment env) throws Exception {
-    DemoProducer producer = new DemoProducer(config.getKafkaConfig());
-    DemoConsumer consumer = new DemoConsumer(config.getKafkaConfig());
+    KafkaProducer producer = new KafkaProducer(config.getKafkaConfig());
+    KafkaProducer consumer = new KafkaProducer(config.getKafkaConfig());
 
     env.lifecycle().manage(producer);
     env.lifecycle().manage(consumer);

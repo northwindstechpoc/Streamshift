@@ -1,10 +1,4 @@
-/*
- * Copyright (c) 2016, salesforce.com, inc.
- * All rights reserved.
- * Licensed under the BSD 3-Clause license.
- * For full license text, see LICENSE.TXT file in the repo root  or https://opensource.org/licenses/BSD-3-Clause
- */
-package com.salesforce.emp.connector;
+package com.northwinds.streamshift;
 
 import java.util.Map;
 import java.util.Optional;
@@ -17,12 +11,6 @@ import org.cometd.bayeux.Message;
 import org.cometd.bayeux.client.ClientSession;
 import org.cometd.bayeux.client.ClientSession.Extension.Adapter;
 
-/**
- * The Bayeux extension for replay
- *
- * @author hal.hildebrand
- * @since API v37.0
- */
 public class ReplayExtension extends Adapter {
     private static final String EXTENSION_NAME = "replay";
     private static final String EVENT_KEY = "event";

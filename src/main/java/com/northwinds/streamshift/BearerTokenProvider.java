@@ -1,6 +1,6 @@
-package com.salesforce.emp.connector.example;
+package com.northwinds.streamshift.example;
 
-import com.salesforce.emp.connector.BayeuxParameters;
+import com.northwinds.streamshift.emp.connector.BayeuxParameters;
 
 import java.util.function.Function;
 import java.util.function.Supplier;

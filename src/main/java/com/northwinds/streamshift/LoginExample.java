@@ -1,13 +1,6 @@
-/*
- * Copyright (c) 2016, salesforce.com, inc.
- * All rights reserved.
- * Licensed under the BSD 3-Clause license.
- * For full license text, see LICENSE.TXT file in the repo root  or https://opensource.org/licenses/BSD-3-Clause
- */
-package com.salesforce.emp.connector.example;
+package com.northwinds.streamshift;
 
-import com.salesforce.emp.connector.*;
-import static com.salesforce.emp.connector.LoginHelper.login;
+import static com.northwinds.streamshift.emp.LoginHelper.login;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -25,27 +18,21 @@ import org.eclipse.jetty.util.ajax.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.salesforce.emp.connector.BayeuxParameters;
-import com.salesforce.emp.connector.EmpConnector;
-import com.salesforce.emp.connector.TopicSubscription;
+import com.northwinds.streamshift.emp.BayeuxParameters;
+import com.northwinds.streamshift.emp.EmpConnector;
+import com.northwinds.streamshift.emp.SalesforceSubscription;
+import com.northwinds.streamshift.emp.KafkaProducer;
+import com.northwinds.streamshift.emp.KafkaConfig;
+
 import com.loginbox.heroku.config.HerokuConfiguration;
 
-/**
- * An example of using the EMP connector using login credentials
- *
- * @author hal.hildebrand
- * @since API v37.0
- * 
- * updated for Heroku deploy troy.sellers
- * 
- */
-public class LoginExample {
+public class Streamshift {
 	
-    private static Logger LOG = LoggerFactory.getLogger(LoginExample.class);
+    private static Logger LOG = LoggerFactory.getLogger(Streamshift.class);
     
     public static void main(String[] argv) throws Exception {
         KafkaConfig kafkaConfig = new KafkaConfig();
-        DemoProducer producer = new DemoProducer(kafkaConfig);
+        KafkaProducer producer = new KafkaProducer(kafkaConfig);
         
         producer.start();
 
@@ -72,7 +59,6 @@ public class LoginExample {
 
         BayeuxParameters params = tokenProvider.login();
 
-        //Consumer<Map<String, Object>> consumer = event -> LOG.info(String.format("Received:\n%s", JSON.toString(event)));
         Consumer<Map<String, Object>> consumer = event -> producer.send(JSON.toString(event));
 
         EmpConnector connector = new EmpConnector(params);
@@ -81,7 +67,7 @@ public class LoginExample {
 
         connector.start().get(5, TimeUnit.SECONDS);
 
-        TopicSubscription subscription = connector.subscribe(System.getenv("SF_TOPIC"), replayFrom, consumer).get(5, TimeUnit.SECONDS);
+        SalesforceSubscription subscription = connector.subscribe(System.getenv("SF_TOPIC"), replayFrom, consumer).get(5, TimeUnit.SECONDS);
 
         LOG.info(String.format("Subscribed: %s", subscription));
     }

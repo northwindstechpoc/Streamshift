@@ -1,22 +1,21 @@
 {
-  "name": "Heroku EMP Connector",
-  "description": "Simple Java application to connect to an EMP stream from Salesforce",
+  "name": "Northwinds Streamshift",
+  "description": "A useful Java application to push Salesforce Events into a Kafka",
   "keywords": [
     "java"
   ],
   "env": {
     "SF_USER": {
-      "description": "The salesforce user you are going to login with.",
-      "value": "set@this.user"
+      "description": "The salesforce user to be used for this integration.",
+      "value": ""
     },
     "SF_PASS": {
-      "description": "Password (and security token concatenated if required).",
-      "value": "pass+securityToken"
+      "description": "User password and security token",
+      "value": ""
     }, 
     "SF_TOPIC" : {
-    	"description":"This is the name of the topic you wish this worker to subscribe to",
+    	"description":"Topic name which you would like to subscribe to",
     	"value":"/data/AccountChangeEvent"
     }
-  },
-  "website": "https://www.heroku.com"
+  }
 }

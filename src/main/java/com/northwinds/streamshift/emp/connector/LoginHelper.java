@@ -1,8 +1,4 @@
-/*
- * Copyright (c) 2016, salesforce.com, inc. All rights reserved. Licensed under the BSD 3-Clause license. For full
- * license text, see LICENSE.TXT file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- */
-package com.salesforce.emp.connector;
+package com.northwinds.streamshift;
 
 import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;
@@ -20,12 +16,6 @@ import org.eclipse.jetty.client.util.ByteBufferContentProvider;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
-/**
- * A helper to obtain the Authentication bearer token via login
- *
- * @author hal.hildebrand
- * @since API v37.0
- */
 public class LoginHelper {
 
     private static class LoginResponseParser extends DefaultHandler {
@@ -79,7 +69,7 @@ public class LoginHelper {
 
     public static final String COMETD_REPLAY = "/cometd/";
     public static final String COMETD_REPLAY_OLD = "/cometd/replay/";
-    static final String LOGIN_ENDPOINT = "https://test.salesforce.com";
+    static final String LOGIN_ENDPOINT = System.getenv("SF_URL");
     private static final String ENV_END = "</soapenv:Body></soapenv:Envelope>";
     private static final String ENV_START = "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' "
             + "xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' "

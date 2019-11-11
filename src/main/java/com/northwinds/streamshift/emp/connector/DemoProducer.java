@@ -1,4 +1,4 @@
-package com.salesforce.emp.connector;
+package com.northwinds.streamshift;
 
 import io.dropwizard.lifecycle.Managed;
 import org.apache.kafka.clients.producer.*;
@@ -9,14 +9,14 @@ import org.slf4j.LoggerFactory;
 import java.util.Properties;
 import java.util.concurrent.Future;
 
-public class DemoProducer implements Managed {
-  private static final Logger LOG = LoggerFactory.getLogger(DemoProducer.class);
+public class KafkaProducer implements Managed {
+  private static final Logger LOG = LoggerFactory.getLogger(KafkaProducer.class);
 
   private final KafkaConfig config;
   
   private Producer<String, String> producer;
 
-  public DemoProducer(KafkaConfig config) {
+  public KafkaProducer(KafkaConfig config) {
     this.config = config;
   }
 

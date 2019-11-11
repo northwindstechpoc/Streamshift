@@ -1,4 +1,4 @@
-package com.salesforce.emp.connector;
+package com.northwinds.streamshift;
 
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.collect.Lists;
@@ -17,11 +17,11 @@ import static java.lang.String.format;
 
 @Path("/")
 public class DemoResource {
-  private final DemoProducer producer;
+  private final KafkaProducer producer;
 
   private final DemoConsumer consumer;
 
-  public DemoResource(DemoProducer producer, DemoConsumer consumer) {
+  public DemoResource(KafkaProducer producer, DemoConsumer consumer) {
     this.producer = producer;
     this.consumer = consumer;
   }

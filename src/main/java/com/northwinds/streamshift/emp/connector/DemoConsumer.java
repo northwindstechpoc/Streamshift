@@ -1,4 +1,4 @@
-package com.salesforce.emp.connector;
+package com.northwinds.streamshift;
 
 import com.google.common.collect.Lists;
 import io.dropwizard.lifecycle.Managed;
