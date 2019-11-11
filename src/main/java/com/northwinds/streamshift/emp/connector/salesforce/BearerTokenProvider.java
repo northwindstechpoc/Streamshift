@@ -5,12 +5,6 @@ import com.northwinds.streamshift.BayeuxParameters;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-/**
- * Container for BayeuxParameters and the bearerToken.
- * Calls BayeuxParameters supplier in re-authentication scenarios.
- *
- * @author pbn-sfdc
- */
 public class BearerTokenProvider implements Function<Boolean, String> {
 
     private Supplier<BayeuxParameters> sessionSupplier;

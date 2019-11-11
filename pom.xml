@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.northwinds.streamshift</groupId>
-	<artifactId>emp-connector</artifactId>
+	<artifactId>streamshift</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>EMP Connector</name>
-	<description>A simplified connector for EMP</description>
-	<url>https://github.com/forcedotcom/EMP-Connector</url>
+	<name>Streamshift</name>
+	<description>A useful app used to push salesforce events into Kafka</description>
+	<url></url>
 
 	<properties>
 		<module.main.class>com.northwinds.streamshift.Streamshift</module.main.class>
