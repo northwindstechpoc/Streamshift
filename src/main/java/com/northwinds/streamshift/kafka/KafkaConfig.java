@@ -39,7 +39,7 @@ public class KafkaConfig {
         URI uri = new URI(url);
         hostPorts.add(format("%s:%d", uri.getHost(), uri.getPort()));
 
-        switch (uri.getScheme()) {
+        /*switch (uri.getScheme()) {
           case "kafka":
             properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "PLAINTEXT");
             break;
@@ -67,11 +67,11 @@ public class KafkaConfig {
               throw new RuntimeException("There was a problem creating the Kafka key stores", e);
             }
             break;
-          default:
+          default:*/
           properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "PLAINTEXT");
           break;
             //throw new IllegalArgumentException(format("unknown scheme; %s", uri.getScheme()));
-        }
+        //}
       } catch (URISyntaxException e) {
         throw new RuntimeException(e);
       }
