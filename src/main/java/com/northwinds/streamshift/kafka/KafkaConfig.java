@@ -68,7 +68,9 @@ public class KafkaConfig {
             }
             break;
           default:
-            throw new IllegalArgumentException(format("unknown scheme; %s", uri.getScheme()));
+          properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "PLAINTEXT");
+          break;
+            //throw new IllegalArgumentException(format("unknown scheme; %s", uri.getScheme()));
         }
       } catch (URISyntaxException e) {
         throw new RuntimeException(e);
