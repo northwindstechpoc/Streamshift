@@ -14,3 +14,4 @@ logging:
 
 kafka:
   topic: ${KAFKA_PREFIX}${KAFKA_TOPIC}
+  consumerGroup: ${KAFKA_PREFIX}${KAFKA_CONSUMERGRP}
