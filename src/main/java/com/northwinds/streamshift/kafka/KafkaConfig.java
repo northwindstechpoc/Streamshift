@@ -41,8 +41,6 @@ public class KafkaConfig {
 
         switch (uri.getScheme()) {
           case "kafka":
-          case "http":
-          case "PLAINTEXT":
             properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "PLAINTEXT");
             break;
           case "kafka+ssl":
