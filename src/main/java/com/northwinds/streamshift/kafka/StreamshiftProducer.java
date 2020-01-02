@@ -21,7 +21,7 @@ public class StreamshiftProducer implements Managed {
 
   private final KafkaConfig config;
   
-  private Producer<String, String> producer;
+  private CloudEventsKafkaProducer<String, AttributesImpl, String> ceProducer;
 
   public StreamshiftProducer(KafkaConfig config) {
     this.config = config;
@@ -39,8 +39,7 @@ public class StreamshiftProducer implements Managed {
     properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
     //producer = new KafkaProducer<>(properties);
-    CloudEventsKafkaProducer<String, AttributesImpl, String>
-		ceProducer = new CloudEventsKafkaProducer<>(properties, Marshallers.binary());
+    ceProducer = new CloudEventsKafkaProducer<>(properties, Marshallers.binary());
     LOG.info("started");
   }
 
