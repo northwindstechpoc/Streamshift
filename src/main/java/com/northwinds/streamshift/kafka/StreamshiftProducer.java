@@ -12,6 +12,7 @@ import io.cloudevents.v1.CloudEventImpl;
 import io.cloudevents.v1.AttributesImpl;
 import io.cloudevents.v1.kafka.Marshallers;
 
+import java.net.URI;
 import java.util.Properties;
 import java.util.concurrent.Future;
 
