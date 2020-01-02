@@ -31,12 +31,26 @@ public class StreamshiftProducer implements Managed {
     properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
     properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
-    producer = new KafkaProducer<>(properties);
+    //producer = new KafkaProducer<>(properties);
+    CloudEventsKafkaProducer<String, AttributesImpl, String>
+		ceProducer = new CloudEventsKafkaProducer<>(props, Marshallers.binary());
     LOG.info("started");
   }
 
   public Future<RecordMetadata> send(String message) {
-    return producer.send(new ProducerRecord<>(config.getTopic(), message, message));
+    // Build an event
+    CloudEventImpl<String> ce =
+    CloudEventBuilder.<String>builder()
+      .withId("x10")
+      .withSource(URI.create("/streamshift"))
+      .withType("change-data-capture")
+      .withDataContentType("application/json")
+      .withData(message)
+      .build();
+
+    // Produce the event
+    return ceProducer.send(new ProducerRecord<>(config.getTopic(), ce));
+    //return producer.send(new ProducerRecord<>(config.getTopic(), message, message));
   }
 
   public void stop() throws Exception {
