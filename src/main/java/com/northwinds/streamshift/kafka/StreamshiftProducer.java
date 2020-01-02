@@ -6,6 +6,12 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.cloudevents.format.builder.EventStep;
+import io.cloudevents.kafka.CloudEventsKafkaProducer;
+import io.cloudevents.v1.CloudEventImpl;
+import io.cloudevents.v1.AttributesImpl;
+import io.cloudevents.v1.kafka.Marshallers;
+
 import java.util.Properties;
 import java.util.concurrent.Future;
 
