@@ -39,7 +39,7 @@ public class StreamshiftProducer implements Managed {
 
     //producer = new KafkaProducer<>(properties);
     CloudEventsKafkaProducer<String, AttributesImpl, String>
-		ceProducer = new CloudEventsKafkaProducer<>(props, Marshallers.binary());
+		ceProducer = new CloudEventsKafkaProducer<>(properties, Marshallers.binary());
     LOG.info("started");
   }
 
