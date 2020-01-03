@@ -80,7 +80,7 @@ public class StreamshiftProducer implements Managed {
 
   public void stop() throws Exception {
     LOG.info("stopping");
-    KafkaProducer<String, AttributesImpl, String> producer = this.producer;
+    Producer<String, String> producer = this.producer;
     this.producer = null;
     LOG.info("closing producer");
     producer.close();
