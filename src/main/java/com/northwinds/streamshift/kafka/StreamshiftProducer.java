@@ -2,15 +2,15 @@ package com.northwinds.streamshift;
 
 import io.dropwizard.lifecycle.Managed;
 import org.apache.kafka.clients.producer.*;
-import org.apache.kafka.common.serialization.ByteArraySerializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.cloudevents.v1.CloudEventBuilder;
-import io.cloudevents.kafka.CloudEventsKafkaProducer;
 import io.cloudevents.v1.CloudEventImpl;
-import io.cloudevents.v1.AttributesImpl;
-import io.cloudevents.v1.kafka.Marshallers;
+import io.cloudevents.extensions.ExtensionFormat;
+import io.cloudevents.json.Json;
+import io.cloudevents.extensions.DistributedTracingExtension;
 
 import java.net.URI;
 import java.util.Properties;
@@ -21,7 +21,7 @@ public class StreamshiftProducer implements Managed {
 
   private final KafkaConfig config;
   
-  private CloudEventsKafkaProducer<String, AttributesImpl, String> ceProducer;
+  private Producer<String, String> producer;
 
   public StreamshiftProducer(KafkaConfig config) {
     this.config = config;
@@ -35,29 +35,45 @@ public class StreamshiftProducer implements Managed {
     properties.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
     properties.put(ProducerConfig.LINGER_MS_CONFIG, 1);
     properties.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
-    properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());
-    properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());
+    properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+    properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
-    //producer = new KafkaProducer<>(properties);
-    ceProducer = new CloudEventsKafkaProducer<>(properties, Marshallers.binary());
+    producer = new KafkaProducer<>(properties);
     LOG.info("started");
   }
 
   public Future<RecordMetadata> send(String message) {
     LOG.info("Building CloudEvent");
     // Build an event
-    CloudEventImpl<String> ce =
-		CloudEventBuilder.<String>builder()
-      .withId("x10")
-      .withSource(URI.create("/streamshift"))
-      .withType("change-data-capture")
-      .withDataContentType("application/json")
-      .withData(message)
-      .build();
-      LOG.info("Sending CloudEvent");
+    // given
+    final String eventId = UUID.randomUUID().toString();
+    final URI src = URI.create("/streamshift");
+    final String eventType = "My.Cloud.Event.Type";
+    final MyCustomEvent payload = message;
+
+    // add trace extension usin the in-memory format
+    final DistributedTracingExtension dt = new DistributedTracingExtension();
+    dt.setTraceparent("00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01");
+    dt.setTracestate("rojo=00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01");
+
+    final ExtensionFormat tracing = new DistributedTracingExtension.Format(dt);
+
+    // passing in the given attributes
+    final CloudEventImpl<MyCustomEvent> cloudEvent =
+      CloudEventBuilder.<MyCustomEvent>builder()
+        .withType(eventType)
+        .withId(eventId)
+        .withSource(src)
+        .withData(payload)
+        .withExtension(tracing)
+        .build();
+
+    // marshalling as json
+    final String json = Json.encode(cloudEvent);
+    LOG.info("Sending CloudEvent");
     
     // Produce the event
-    return ceProducer.send(new ProducerRecord<>(config.getTopic(), ce));
+    return ceProducer.send(new ProducerRecord<>(config.getTopic(), json));
     //return producer.send(new ProducerRecord<>(config.getTopic(), message, message));
   }
 
