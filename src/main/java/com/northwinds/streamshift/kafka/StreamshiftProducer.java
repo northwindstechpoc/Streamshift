@@ -80,10 +80,10 @@ public class StreamshiftProducer implements Managed {
 
   public void stop() throws Exception {
     LOG.info("stopping");
-    CloudEventsKafkaProducer<String, AttributesImpl, String> ceProducer = this.ceProducer;
-    this.ceProducer = null;
+    KafkaProducer<String, AttributesImpl, String> producer = this.producer;
+    this.producer = null;
     LOG.info("closing producer");
-    ceProducer.close();
+    producer.close();
     LOG.info("stopped");
   }
 }
