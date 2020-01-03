@@ -12,8 +12,6 @@ import io.cloudevents.extensions.ExtensionFormat;
 import io.cloudevents.json.Json;
 import io.cloudevents.extensions.DistributedTracingExtension;
 
-import org.json.simple.JSONObject; 
-import org.json.simple.parser.*; 
 import java.net.URI;
 import java.util.UUID;
 import java.util.Properties;
@@ -45,14 +43,14 @@ public class StreamshiftProducer implements Managed {
     LOG.info("started");
   }
 
-  public Future<RecordMetadata> send(JSONObject message) {
+  public Future<RecordMetadata> send(String message) {
     LOG.info("Building CloudEvent");
     // Build an event
     // given
     final String eventId = UUID.randomUUID().toString();
     final URI src = URI.create("/streamshift");
     final String eventType = "My.Cloud.Event.Type";
-    final JSONObject payload = new JSONObject(message);
+    final String payload = message;
 
     // add trace extension usin the in-memory format
     final DistributedTracingExtension dt = new DistributedTracingExtension();
@@ -62,8 +60,8 @@ public class StreamshiftProducer implements Managed {
     final ExtensionFormat tracing = new DistributedTracingExtension.Format(dt);
 
     // passing in the given attributes
-    final CloudEventImpl<JSONObject> cloudEvent =
-      CloudEventBuilder.<JSONObject>builder()
+    final CloudEventImpl<String> cloudEvent =
+      CloudEventBuilder.<String>builder()
         .withType(eventType)
         .withId(eventId)
         .withSource(src)
