@@ -13,6 +13,7 @@ import io.cloudevents.json.Json;
 import io.cloudevents.extensions.DistributedTracingExtension;
 
 import java.net.URI;
+import java.util.UUID;
 import java.util.Properties;
 import java.util.concurrent.Future;
 
@@ -49,7 +50,7 @@ public class StreamshiftProducer implements Managed {
     final String eventId = UUID.randomUUID().toString();
     final URI src = URI.create("/streamshift");
     final String eventType = "My.Cloud.Event.Type";
-    final MyCustomEvent payload = message;
+    final String payload = message;
 
     // add trace extension usin the in-memory format
     final DistributedTracingExtension dt = new DistributedTracingExtension();
