@@ -44,6 +44,7 @@ public class StreamshiftProducer implements Managed {
   }
 
   public Future<RecordMetadata> send(String message) {
+    LOG.info("Building CloudEvent");
     // Build an event
     CloudEventImpl<String> ce =
     CloudEventBuilder.<String>builder()
@@ -53,10 +54,11 @@ public class StreamshiftProducer implements Managed {
       .withDataContentType("application/json")
       .withData(message)
       .build();
-
+      LOG.info("Sending CloudEvent");
     // Produce the event
     return ceProducer.send(new ProducerRecord<>(config.getTopic(), ce));
     //return producer.send(new ProducerRecord<>(config.getTopic(), message, message));
+    LOG.info("Message Sent");
   }
 
   public void stop() throws Exception {
