@@ -47,7 +47,7 @@ public class StreamshiftProducer implements Managed {
     LOG.info("Building CloudEvent");
     // Build an event
     CloudEventImpl<String> ce =
-    CloudEventBuilder.<String>builder()
+    CloudEventBuilder<String>builder()
       .withId("x10")
       .withSource(URI.create("/streamshift"))
       .withType("change-data-capture")
@@ -55,6 +55,7 @@ public class StreamshiftProducer implements Managed {
       .withData(message)
       .build();
       LOG.info("Sending CloudEvent");
+      LOG.info(ce);
     // Produce the event
     return ceProducer.send(new ProducerRecord<>(config.getTopic(), ce));
     //return producer.send(new ProducerRecord<>(config.getTopic(), message, message));
