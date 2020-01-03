@@ -43,14 +43,14 @@ public class StreamshiftProducer implements Managed {
     LOG.info("started");
   }
 
-  public Future<RecordMetadata> send(String message) {
+  public Future<RecordMetadata> send(Json message) {
     LOG.info("Building CloudEvent");
     // Build an event
     // given
     final String eventId = UUID.randomUUID().toString();
     final URI src = URI.create("/streamshift");
     final String eventType = "My.Cloud.Event.Type";
-    final String payload = message;
+    final Json payload = message;
 
     // add trace extension usin the in-memory format
     final DistributedTracingExtension dt = new DistributedTracingExtension();
