@@ -59,7 +59,7 @@ public class Streamshift {
 
         BayeuxParameters params = tokenProvider.login();
 
-        Consumer<Map<String, Object>> consumer = event -> producer.send(event);
+        Consumer<Map<String, Object>> consumer = event -> producer.send(JSON.toString(event));
 
         EmpConnector connector = new EmpConnector(params);
 

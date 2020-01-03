@@ -50,7 +50,8 @@ public class StreamshiftProducer implements Managed {
     final String eventId = UUID.randomUUID().toString();
     final URI src = URI.create("/streamshift");
     final String eventType = "My.Cloud.Event.Type";
-    final Json payload = message;
+    JSONParser parser = new JSONParser();
+    final Json payload = (JSONObject) parser.parse(message);
 
     // add trace extension usin the in-memory format
     final DistributedTracingExtension dt = new DistributedTracingExtension();
