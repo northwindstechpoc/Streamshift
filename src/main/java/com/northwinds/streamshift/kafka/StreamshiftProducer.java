@@ -75,7 +75,7 @@ public class StreamshiftProducer implements Managed {
     
     // Produce the event
     //return ceProducer.send(new ProducerRecord<>(config.getTopic(), json));
-    return producer.send(new ProducerRecord<>(config.getTopic(), message, message));
+    return producer.send(new ProducerRecord<>(config.getTopic(), json, json));
   }
 
   public void stop() throws Exception {
