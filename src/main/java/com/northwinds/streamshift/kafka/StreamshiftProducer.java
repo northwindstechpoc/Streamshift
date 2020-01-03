@@ -60,12 +60,12 @@ public class StreamshiftProducer implements Managed {
     final ExtensionFormat tracing = new DistributedTracingExtension.Format(dt);
 
     // passing in the given attributes
-    final CloudEventImpl<String> cloudEvent =
-      CloudEventBuilder.<String>builder()
+    final CloudEventImpl<Object> cloudEvent =
+      CloudEventBuilder.<Object>builder()
         .withType(eventType)
         .withId(eventId)
         .withSource(src)
-        .withData(Json.encode(message))
+        .withData(message)
         .withExtension(tracing)
         .build();
 
