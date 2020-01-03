@@ -46,8 +46,7 @@ public class StreamshiftProducer implements Managed {
   public Future<RecordMetadata> send(String message) {
     LOG.info("Building CloudEvent");
     // Build an event
-    CloudEventImpl<String> ce =
-    CloudEventBuilder<String>builder()
+    CloudEventImpl<String> ce = CloudEventBuilder.<String>builder()
       .withId("x10")
       .withSource(URI.create("/streamshift"))
       .withType("change-data-capture")
