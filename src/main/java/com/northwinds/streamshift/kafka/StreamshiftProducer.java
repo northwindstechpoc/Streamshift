@@ -2,7 +2,7 @@ package com.northwinds.streamshift;
 
 import io.dropwizard.lifecycle.Managed;
 import org.apache.kafka.clients.producer.*;
-import org.apache.kafka.common.serialization.StringSerializer;
+import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,8 +35,8 @@ public class StreamshiftProducer implements Managed {
     properties.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
     properties.put(ProducerConfig.LINGER_MS_CONFIG, 1);
     properties.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
-    properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-    properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+    properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());
+    properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());
 
     //producer = new KafkaProducer<>(properties);
     ceProducer = new CloudEventsKafkaProducer<>(properties, Marshallers.binary());
