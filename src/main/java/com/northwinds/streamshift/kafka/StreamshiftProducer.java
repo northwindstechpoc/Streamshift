@@ -45,6 +45,7 @@ public class StreamshiftProducer implements Managed {
 
   public Future<RecordMetadata> send(String message) {
     LOG.info("Building CloudEvent");
+    LOG.info(message);
     // Build an event
     // given
     final String eventId = UUID.randomUUID().toString();
