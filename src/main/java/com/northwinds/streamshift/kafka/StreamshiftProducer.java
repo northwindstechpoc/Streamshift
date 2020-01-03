@@ -12,6 +12,8 @@ import io.cloudevents.extensions.ExtensionFormat;
 import io.cloudevents.json.Json;
 import io.cloudevents.extensions.DistributedTracingExtension;
 
+import org.json.simple.JSONObject; 
+import org.json.simple.parser.*; 
 import java.net.URI;
 import java.util.UUID;
 import java.util.Properties;
