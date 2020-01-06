@@ -66,11 +66,11 @@
             <version>4.0.4.Final</version>
         </dependency>
 		<dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>1.0.0.GA</version>
-            <scope>provided</scope>
-        </dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+
 		<dependency>
 		<groupId>org.cometd.java</groupId>
 		<artifactId>cometd-java-client</artifactId>
