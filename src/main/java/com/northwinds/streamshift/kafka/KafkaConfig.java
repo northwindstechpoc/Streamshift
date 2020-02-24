@@ -1,4 +1,4 @@
-package com.northwinds.streamshift.kafka;
+package com.northwinds.streamshift;
 
 import com.github.jkutner.EnvKeyStore;
 import com.google.common.base.Joiner;
