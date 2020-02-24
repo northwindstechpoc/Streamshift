@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PlatformEventChannelMember xmlns="http://soap.sforce.com/2006/04/metadata">
+     <enrichedFields>
+        <name>HealthCloudGA__SourceSystemId__c</name>
+    </enrichedFields>
+    <eventChannel>ProviderEvents__chn</eventChannel>
+    <selectedEntity>AccountChangeEvent</selectedEntity>
+</PlatformEventChannelMember>
